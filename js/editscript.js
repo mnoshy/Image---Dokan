@@ -414,7 +414,7 @@ function preventDefaultForScrollKeys(e) {
 }
 
 function disableScroll() {
-    if(scrollEnabled == false)
+    if (scrollEnabled == false)
         return;
     //to disable aymans work
     if (window.addEventListener) // older FF
@@ -426,7 +426,7 @@ function disableScroll() {
 }
 
 function enableScroll() {
-    if(scrollEnabled == false)
+    if (scrollEnabled == false)
         return;
     //to disable aymans work
     if (window.removeEventListener)
@@ -770,31 +770,42 @@ function imageExists(image_url) {
 var scroll_position;
 var previous_overflow;
 // Control Scrolling
-function ScrollControl(LockImage)
-{
-    if(scrollEnabled)
-    {
+function ScrollControl(LockImage) {
+    if (scrollEnabled) {
         // lock scroll position, but retain settings for later
-        
+
         var html = $('body'); // it would make more sense to apply this to body, but IE7 won't have that
-        
+
         html.css('overflow', 'hidden');
 
         scrollEnabled = false;
-        $(LockImage).attr("src","assets/images/lock.png");
+        $(LockImage).attr("src", "assets/images/lock.png");
+        handleScroll = function (e) {
+
+        };
     }
-    else
-    {
+    else {
         //un - lock scroll position
         var html = $('body');
         html.css('overflow', "visible");
 
         scrollEnabled = true;
-        $(LockImage).attr("src","assets/images/unlock.png");
+        $(LockImage).attr("src", "assets/images/unlock.png");
+        handleScroll = function (e) {
+            e.preventDefault();
+        };
     }
 
-    $(LockImage).css("opacity","1");
-    setTimeout( function(){
+    $(LockImage).css("opacity", "1");
+    setTimeout(function () {
         $(LockImage).css("opacity", "0.5");
-    },2000);
+    }, 2000);
 }
+
+$(document).ready(function () {
+    document.addEventListener('touchmove', handleScroll(e),false);
+});
+
+var handleScroll = function (e) {
+
+};
