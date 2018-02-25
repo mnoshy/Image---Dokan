@@ -767,33 +767,15 @@ function imageExists(image_url) {
 
 }
 
-var scroll_position;
-var previous_overflow;
 // Control Scrolling
 function ScrollControl(LockImage) {
     if (scrollEnabled) {
-        // lock scroll position, but retain settings for later
-
-        var html = $('body'); // it would make more sense to apply this to body, but IE7 won't have that
-
-        html.css('overflow', 'hidden');
-
+        disableScroll();
         scrollEnabled = false;
-        $(LockImage).attr("src", "assets/images/lock.png");
-        handleScroll = function (e) {
-
-        };
     }
     else {
-        //un - lock scroll position
-        var html = $('body');
-        html.css('overflow', "visible");
-
+        enableScroll();
         scrollEnabled = true;
-        $(LockImage).attr("src", "assets/images/unlock.png");
-        handleScroll = function (e) {
-            e.preventDefault();
-        };
     }
 
     $(LockImage).css("opacity", "1");
@@ -801,11 +783,3 @@ function ScrollControl(LockImage) {
         $(LockImage).css("opacity", "0.5");
     }, 2000);
 }
-
-$(document).ready(function () {
-    document.addEventListener('touchmove', handleScroll(e),false);
-});
-
-var handleScroll = function (e) {
-
-};
