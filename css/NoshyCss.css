@@ -1,0 +1,72 @@
+.selectedImg{
+	box-shadow: 1px 1px 20px 1px lightgrey;
+}
+
+.rotatedButton
+{
+	-webkit-transform: rotate(180deg)!important;
+	-moz-transform: rotate(180deg)!important;
+	-ms-transform: rotate(180deg)!important;
+	transform: rotate(180deg)!important;
+}
+
+.hideControls
+{
+	opacity: 0;
+}
+
+.category-icon
+{
+	cursor: pointer;
+}
+.products article .info
+{
+	display: block !important;
+}
+.add-favorite
+{
+	-moz-transform: scale(1) !important;
+	-ms-transform: scale(1) !important;
+	-o-transform: scale(1) !important;
+	-webkit-transform: scale(1) !important;
+	transform: scale(1) !important;
+}
+@media screen and (orientation: landscape)
+{
+	#dropdown
+	{
+		width: 249px;
+	}
+	#sharebtnDesktop
+	{
+		display: inline;
+	}
+	#sharebtnMobile
+	{
+		display: none;
+	}
+	.icon-link
+	{
+		margin-right: 10px;
+	}
+}
+@media screen and (orientation: portrait)
+{
+	#dropdown
+	{
+		width: 180px ;
+	}
+	#sharebtnDesktop
+	{
+		display: none ;
+	}
+	#sharebtnMobile
+	{
+		display: inline ;
+	}
+	.icon-link
+	{
+		margin-right: 0px;
+	}
+
+}

@@ -1,0 +1,1 @@
+pngquant *.png --ext=.png --force

@@ -1,0 +1,5 @@
+convert to png
+apply trim and resize script
+pngquant *.png --ext=.png --force
+
+then create a version with fully trimmed script
