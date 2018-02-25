@@ -777,7 +777,7 @@ function ScrollControl(LockImage)
             self.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft,
             self.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
         ];
-        var html = $('html'); // it would make more sense to apply this to body, but IE7 won't have that
+        var html = $('body'); // it would make more sense to apply this to body, but IE7 won't have that
         html.data('scroll-position', scrollPosition);
         html.data('previous-overflow', html.css('overflow'));
         html.css('overflow', 'hidden');
@@ -789,7 +789,7 @@ function ScrollControl(LockImage)
     else
     {
         //un - lock scroll position
-        var html = $('html');
+        var html = $('body');
         var scrollPosition = html.data('scroll-position');
         html.css('overflow', html.data('previous-overflow'));
         window.scrollTo(scrollPosition[0], scrollPosition[1]);
