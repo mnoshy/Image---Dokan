@@ -776,12 +776,10 @@ function ScrollControl(LockImage) {
     if (scrollEnabled) {
         disableScroll();
         scrollEnabled = false;
-        $(LockImage).attr("src","assets/images/lock.png");
     }
     else {
         enableScroll();
         scrollEnabled = true;
-        $(LockImage).attr("src","assets/images/unlock.png");
     }
 
     $(LockImage).css("opacity", "1");
