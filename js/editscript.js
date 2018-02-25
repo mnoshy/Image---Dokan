@@ -767,6 +767,8 @@ function imageExists(image_url) {
 
 }
 
+var scroll_position;
+var previous_overflow;
 // Control Scrolling
 function ScrollControl(LockImage)
 {
@@ -778,8 +780,8 @@ function ScrollControl(LockImage)
             self.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
         ];
         var html = $('body'); // it would make more sense to apply this to body, but IE7 won't have that
-        html.data('scroll-position', scrollPosition);
-        html.data('previous-overflow', html.css('overflow'));
+        scroll_position = scrollPosition;
+        previous_overflow = html.css('overflow');
         html.css('overflow', 'hidden');
         window.scrollTo(scrollPosition[0], scrollPosition[1]);
 
@@ -790,8 +792,8 @@ function ScrollControl(LockImage)
     {
         //un - lock scroll position
         var html = $('body');
-        var scrollPosition = html.data('scroll-position');
-        html.css('overflow', html.data('previous-overflow'));
+        var scrollPosition = scroll_position;
+        html.css('overflow', previous_overflow);
         window.scrollTo(scrollPosition[0], scrollPosition[1]);
 
         scrollEnabled = true;
