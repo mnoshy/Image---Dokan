@@ -92,17 +92,14 @@ window.onload = function () {
         startDragOffset.y = evt.touches[0].pageY - translatePos.y;
         if (imageID != null) {
             //saveNeeded = true;
-            if (scrollEnabled) {
-                disableScroll();
-            }
+            disableScroll();
         }
 
     });
 
     container.addEventListener("touchend", function (evt) {
         mouseDown = false;
-        if(scrollEnabled)
-            enableScroll();
+        enableScroll();
         DeselectImages();
         //saveNeeded = true;
     });
@@ -138,8 +135,7 @@ window.onload = function () {
             }
             else {
                 mouseDown = false;
-                if(scrollEnabled)
-                    enableScroll();
+                enableScroll();
                 DeselectImages();
             }
             saveNeeded = true;
@@ -418,8 +414,8 @@ function preventDefaultForScrollKeys(e) {
 }
 
 function disableScroll() {
-    // if (scrollEnabled == false)
-    //     return;
+    if (scrollEnabled == false)
+        return;
     //to disable aymans work
     if (window.addEventListener) // older FF
         window.addEventListener('DOMMouseScroll', preventDefault, false);
@@ -430,8 +426,8 @@ function disableScroll() {
 }
 
 function enableScroll() {
-    // if (scrollEnabled == false)
-    //     return;
+    if (scrollEnabled == false)
+        return;
     //to disable aymans work
     if (window.removeEventListener)
         window.removeEventListener('DOMMouseScroll', preventDefault, false);
