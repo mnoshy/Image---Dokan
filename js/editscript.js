@@ -788,7 +788,6 @@ function ScrollControl(LockImage)
         //un - lock scroll position
         var html = $('body');
         html.css('overflow', "visible");
-        window.scrollTo(scrollPosition[0], scrollPosition[1]);
 
         scrollEnabled = true;
         $(LockImage).attr("src","assets/images/unlock.png");
