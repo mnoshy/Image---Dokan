@@ -767,6 +767,7 @@ function imageExists(image_url) {
 
 }
 
+var previousScrollTop
 // Control Scrolling
 function ScrollControl(LockImage)
 {
@@ -775,18 +776,21 @@ function ScrollControl(LockImage)
         
 
         scrollEnabled = false;
-        alert($(window).height());
-        alert($(document).height());
-        $('body').css('height',$(window).height());
-        $('body').css('overflow','hidden');
+        previousScrollTop = $('html').scrollTop();
+        $('section').first().css('margin-top','-'+previousScrollTop+'px');
+        $('.wrapper').css('height',$(window).height());
+        $('.wrapper').css('overflow','hidden');
+        
         $(LockImage).attr("src","assets/images/lock.png");
     }
     else
     {
 
         scrollEnabled = true;
-        $('body').css('height','auto');
-        $('body').css('overflow','visible');
+        $('section').first().css('margin-top','0');
+        $('.wrapper').css('height','auto');
+        $('.wrapper').css('overflow','visible');
+        $('html').scrollTop(previousScrollTop);
         $(LockImage).attr("src","assets/images/unlock.png");
     }
 
