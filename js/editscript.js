@@ -807,10 +807,10 @@ function ScrollControl(LockImage)
         
 
         scrollEnabled = false;
-        previousScrollTop = $(window).scrollTop();
-        // alert(previousScrollTop);
-        $('section').first().css('margin-top','-'+previousScrollTop+'px');
-        $('.wrapper').css('height',$(window).height());
+        $("#cutterDisabler").css("display","block");
+        // previousScrollTop = $(window).scrollTop();
+        // $('section').first().css('margin-top','-'+previousScrollTop+'px');
+        // $('.wrapper').css('height',$(window).height());
         
         $(LockImage).attr("src","assets/images/lock.png");
     }
@@ -818,9 +818,10 @@ function ScrollControl(LockImage)
     {
 
         scrollEnabled = true;
-        $('section').first().css('margin-top','0');
-        $('.wrapper').css('height','auto');
-        $(window).scrollTop(previousScrollTop);
+        // $('section').first().css('margin-top','0');
+        // $('.wrapper').css('height','auto');
+        // $(window).scrollTop(previousScrollTop);
+        $("#cutterDisabler").css("display","none");
         $(LockImage).attr("src","assets/images/unlock.png");
     }
 
@@ -829,6 +830,3 @@ function ScrollControl(LockImage)
         $(LockImage).css("opacity", "0.5");
     },2000);
 }
-
-// window.addEventListener("touchmove", testDisableScroll, {passive: false} );
-// window.removeEventListener("touchmove", testDisableScroll, false);
