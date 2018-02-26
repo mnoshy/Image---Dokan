@@ -775,6 +775,8 @@ function ScrollControl(LockImage)
         
 
         scrollEnabled = false;
+        alert($(window).height());
+        alert($(document).height());
         $('body').css('height',$(window).height());
         $('body').css('overflow','hidden');
         $(LockImage).attr("src","assets/images/lock.png");
