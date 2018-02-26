@@ -777,7 +777,7 @@ function ScrollControl(LockImage)
 
         scrollEnabled = false;
         previousScrollTop = $(window).scrollTop();
-        alert(previousScrollTop);
+        // alert(previousScrollTop);
         $('section').first().css('margin-top','-'+previousScrollTop+'px');
         $('.wrapper').css('height',$(window).height());
         
