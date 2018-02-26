@@ -777,6 +777,7 @@ function ScrollControl(LockImage)
 
         scrollEnabled = false;
         previousScrollTop = $('html').scrollTop();
+        alert(previousScrollTop);
         $('section').first().css('margin-top','-'+previousScrollTop+'px');
         $('.wrapper').css('height',$(window).height());
         $('.wrapper').css('overflow','hidden');
@@ -799,3 +800,6 @@ function ScrollControl(LockImage)
         $(LockImage).css("opacity", "0.5");
     },2000);
 }
+
+// window.addEventListener("touchmove", testDisableScroll, {passive: false} );
+// window.removeEventListener("touchmove", testDisableScroll, false);
