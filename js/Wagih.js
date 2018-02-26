@@ -126,16 +126,18 @@ function send_request(category) {
 
 function MoodBoardResponse(recieved) {
 
+  $(".added").removeClass("added");
   $("#products-row").html("");
   for (var i = 0; i < recieved[1].length; i++) {
     var id = getTheProductId(recieved[1][i]);
     var imgurl = recieved[0] + "/" + recieved[1][i];
     if (imageExists("assets/furniture/"+imgurl)) {
       $("#products-row").append(productTemplate(id, imgurl));
-      $(".added").removeClass("added");
-      if ($("#ed_" + id).length > 0) {
-        $("#heart_ed_" + id).addClass("added");
-      }
+      
+      // if ($("#ed_" + id).length > 0) {
+      //   $("#heart_ed_" + id).addClass("added");
+        
+      // }
     }
 
   }
@@ -145,8 +147,9 @@ function productTemplate(product_id, product_img) {
   var html = "";
   html += '<div class="col-md-4 col-xs-6"><article>';
   html += '<div class="info">';
-
-  html += '<span id="heart_ed_' + product_id + '" class="add-favorite" onclick="AddImage(\'' + product_id + '\',\'cutter\')">';
+  html += '<span id="heart_ed_' + product_id + '" class="add-favorite '+
+  ($('#ed_'+product_id).length > 0?"added":"")+
+  '" onclick="AddImage(\'' + product_id + '\',\'cutter\')">';
   html += '<a href="javascript:void(0);" data-title="Add to favorites" data-title-added="Added to favorites list"><i class="icon icon-heart"></i></a>';
   html += '</span>';
 

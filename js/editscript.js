@@ -25,9 +25,27 @@ var saveNeeded = false;
 var hideMoodBoards = false;
 // Control Scroll
 var scrollEnabled = true;
-
+var currentMoodBoardId = -1;
 var allData;
+var isOnline = false;
 window.onload = function () {
+    
+    try
+    {
+        currentMoodBoardId = parseInt(getCookie("currentMoodBoardId"));
+        if(isNaN(currentMoodBoardId))
+        {
+            currentMoodBoardId = -1;
+        }
+    }
+    catch(errs)
+    {
+
+    }
+    if(getCookie("saveNeeded") == "true")
+    {
+        saveNeeded = true;
+    }
     $.ajax({
         url: noshyServerPath + "noshyapi.php?inspirations=true"
     }).done(function (data) {
@@ -42,8 +60,11 @@ window.onload = function () {
         url: serverPath + "?allcategories=a"
     }).done(function (data) {
         allData = data;
+        setCookie("allData",JSON.stringify(allData),10);
         send_request('Sofas');
     }).fail(function (data) {
+        allData = JSON.parse(getCookie("allData"));
+        send_request('Sofas');
     });
 
     function updateIndicatoroff() {
@@ -59,10 +80,20 @@ window.onload = function () {
     // document.addEventListener('offline', updateIndicatoroff);
     setInterval(function () {
         if (navigator.onLine == false) {
+            isOnline = false;
             updateIndicatoroff();
+            $('#controlsRow').css("display","none");
         }
-        else {
+        else if(navigator.onLine && isOnline == false) {
+            isOnline = true;
             updateIndicatoron();
+            $('#controlsRow').css("display","block");
+            if (hideMoodBoards == false) {
+                load_moodboards(email);
+              }
+              else {
+                $("#dropdown").css("display", "none");
+              }
         }
     }, 1000);
     if (navigator.onLine == false) {
@@ -70,7 +101,15 @@ window.onload = function () {
         $(".offline-ui").removeClass("offline-ui-up");
         $(".offline-ui").addClass("offline-ui-down");
     }
-    LoadData();
+    if(saveNeeded)
+    {
+        HandleLoadedData(JSON.parse(getCookie("LoadedData")));
+    }
+    else
+    {
+        LoadData();
+    }
+    
     //document.addEventListener('contextmenu', event => event.preventDefault());
     var container = document.getElementById("cutter");
     var ZoomIn = document.getElementById("zoomIn");
@@ -517,35 +556,30 @@ function SaveData() {
             Background: $("#cutter").css("background-color"),
             moodboardId: currentMoodBoardId
         };
-        // setCookie("scales",JSON.stringify(scales));
-        // setCookie("angles",JSON.stringify(angles));
-        // setCookie("translatePosArray",JSON.stringify(translatePosArray));
-        // setCookie("ImageIDs",JSON.stringify(ImageIDs));
-        // setCookie("ImageUrls",JSON.stringify(ImageUrls));
-        // setCookie("BGColor",$("#cutter").css("background-color"));
-        // console.log("http://localhost/image-backend.php?moodboard="+JSON.stringify(moodboard));
-        /*$.ajax({
-            url:"http://localhost/image-backend.php?moodboard="+JSON.stringify(moodboard)
-          }).done(function(data) {
-            // alert(data);
-          });*/
-        //   console.log("http://dev.acme-group.net/imagedemo/image-backend.php?moodboard="+JSON.stringify(moodboard));
-        //"http://dev.acme-group.net/imagedemo2/api.php?moodboard="+JSON.stringify(moodboard));
+        setCookie("LoadedData",JSON.stringify(moodboard),10);
+        setCookie("currentMoodBoardId",currentMoodBoardId,10);
         $.ajax({
-            url: serverPath + "?moodboard=" + JSON.stringify(moodboard)
+            url: serverPath + "?moodboard=" + JSON.stringify(moodboard),
+            timeout: 3000
         }).done(function (data) {
-            // alert(data);
             saving = false;
+            setCookie("saveNeeded","false",10);
             // console.log("saved");
-            //alert("done");
-            //LoadData();
         }).fail(function (edata) {
-            saving = false;
-            //alert("done - fail");
-            //alert(edata);
-            // console.log(edata);
-            // console.log(scales);
-            // console.log("saved");
+            if(edata.readyState == 4)
+            {
+                saving = false;
+                setCookie("saveNeeded","false",10);
+            }
+            else if(edata.readyState == 0)
+            {
+                saveNeeded = true;
+                saving = false;
+                setCookie("saveNeeded","true",10);
+            }
+            
+            // console.log("error saving");
+            console.log(edata.readyState);
         });
 
     }
@@ -554,7 +588,7 @@ function SaveData() {
     }
 
 }
-var currentMoodBoardId = -1;
+
 function LoadData() {
 
 
@@ -564,70 +598,67 @@ function LoadData() {
             Email: checkEmail(),
             Mobile: getCookie("Mobile")
         };
-        //console.log("http://localhost/imagedemo/image-backend.php?user="+JSON.stringify(userInfo)+"&moodboardId="+currentMoodBoardId);
-        // console.log("http://localhost/image-backend.php?user="+JSON.stringify(userInfo));
         $.ajax({
             url: serverPath + "?user=" + JSON.stringify(userInfo) + "&moodboardId=" + currentMoodBoardId
         }).done(function (data) {
-            //console.log(data);
-            // console.log("loaded");
-            // console.log(data.Scales);
             if (!saving && !saveNeeded) {
-                $("#cutter").empty();
-
-                try {
-                    var jsoni = data;
-                    scales = jsoni.Scales;//$.parseJSON(getCookie("scales"));
-                    angles = jsoni.Angles;//$.parseJSON(getCookie("angles"));
-                    // console.log(angles);
-                    translatePosArray = jsoni.Positions;//$.parseJSON(getCookie("translatePosArray"));
-                    ImageIDs = jsoni.ImageIds;//$.parseJSON(getCookie("ImageIDs"));
-                    ImageUrls = jsoni.ImageUrls;//$.parseJSON(getCookie("ImageUrls"));
-                    $("#cutter").css("background-color", jsoni.Background);
-                    if (ImageIDs != "") {
-                        $(".added").removeClass("added");
-                        for (var i = 0; i < ImageIDs.length; i++) {
-                            AddImageByIndex(i);
-                            if ($("#" + ImageIDs[i]).length > 0) {
-                                $("#heart_" + ImageIDs[i]).addClass("added");
-                            }
-                        }
-                    }
-                    else {
-
-                        scales = [];
-                        angles = [];
-                        translatePosArray = [];
-                        ImageIDs = [];
-                        ImgIndex = -1;
-                        ImageUrls = [];
-                    }
-
-                }
-                catch (ee) {
-                    //alert(ee);
-                }
+                
+                setCookie("LoadedData",JSON.stringify(data),10);
+                HandleLoadedData(data);
+                
             }
 
 
         }).fail(function (err) {
-            // alert( err);
+            console.log("fail");
+            var jsoni = JSON.parse( getCookie("LoadedData"));
+            HandleLoadedData(jsoni);
         });
-        /* $.ajax({
-           url: "http://dev.acme-group.net/imagedemo/image-backend.php?user="+JSON.stringify(userInfo)
-         }).done(function()
-         {
-
-         });*/
 
 
 
     }
     catch (e) {
-        // alert("javascript error" + e);
+        console.log(e);
     }
 
 
+}
+
+function HandleLoadedData(jsoni)
+{
+    $("#cutter").empty();
+    try {
+        scales = jsoni.Scales;
+        angles = jsoni.Angles;
+        translatePosArray = jsoni.Positions;
+        ImageIDs = jsoni.ImageIds;
+        ImageUrls = jsoni.ImageUrls;
+        $("#cutter").css("background-color", jsoni.Background);
+        if (ImageIDs != "") {
+            $(".added").removeClass("added");
+            for (var i = 0; i < ImageIDs.length; i++) {
+                AddImageByIndex(i);
+                if ($("#" + ImageIDs[i]).length > 0) {
+                    $("#heart_" + ImageIDs[i]).addClass("added");
+                    //alert("#heart_" + ImageIDs[i]);
+                }
+            }
+        }
+        else {
+
+            scales = [];
+            angles = [];
+            translatePosArray = [];
+            ImageIDs = [];
+            ImgIndex = -1;
+            ImageUrls = [];
+        }
+
+    }
+    catch (ee) {
+        
+    }
 }
 function ImageAvailable(imID) {
     for (var i = 0; i < ImageIDs.length; i++) {

@@ -23,6 +23,10 @@ function getCookie(cname) {
 
 function Register() {
   if (!(getCookie("Email") == $("#email_input").val())) {
+    setCookie("allData","");
+    setCookie("saveNeeded","false");
+    setCookie("LoadedData","");
+    setCookie("currentMoodBoardId","-1");
     setCookie("scales", "");
     setCookie("angles", "");
     setCookie("translatePosArray", "");
