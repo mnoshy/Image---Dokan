@@ -772,22 +772,19 @@ function ScrollControl(LockImage)
 {
     if(scrollEnabled)
     {
-        // lock scroll position, but retain settings for later
         
-        var html = $('body'); // it would make more sense to apply this to body, but IE7 won't have that
-        
-        html.css('overflow', 'hidden');
 
         scrollEnabled = false;
+        $('body').css('height',$(window).height());
+        $('body').css('overflow','hidden');
         $(LockImage).attr("src","assets/images/lock.png");
     }
     else
     {
-        //un - lock scroll position
-        var html = $('body');
-        html.css('overflow', "visible");
 
         scrollEnabled = true;
+        $('body').css('height','auto');
+        $('body').css('overflow','visible');
         $(LockImage).attr("src","assets/images/unlock.png");
     }
 
