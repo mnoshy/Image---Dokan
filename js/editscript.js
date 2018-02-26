@@ -776,11 +776,10 @@ function ScrollControl(LockImage)
         
 
         scrollEnabled = false;
-        previousScrollTop = $('html').scrollTop();
+        previousScrollTop = $(window).scrollTop();
         alert(previousScrollTop);
         $('section').first().css('margin-top','-'+previousScrollTop+'px');
         $('.wrapper').css('height',$(window).height());
-        $('.wrapper').css('overflow','hidden');
         
         $(LockImage).attr("src","assets/images/lock.png");
     }
@@ -790,8 +789,7 @@ function ScrollControl(LockImage)
         scrollEnabled = true;
         $('section').first().css('margin-top','0');
         $('.wrapper').css('height','auto');
-        $('.wrapper').css('overflow','visible');
-        $('html').scrollTop(previousScrollTop);
+        $(window).scrollTop(previousScrollTop);
         $(LockImage).attr("src","assets/images/unlock.png");
     }
 
