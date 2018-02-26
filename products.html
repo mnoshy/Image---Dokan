@@ -411,7 +411,7 @@
     </div>
     <!--/wrapper-->
     <!-- Scroll Control Button -->
-    <img src="assets/images/unlock.png" onclick="ScrollControl(this);" style="position: fixed; left: 2%; top: 32%;z-index: 1000; height: 10; width: 10; opacity: 0.5;"
+    <img id="lockControl" src="assets/images/unlock.png" onclick="ScrollControl(this);" style="position: fixed; left: 2%; top: 32%;z-index: 1000; height: 10; width: 10; opacity: 0.5;"
     />
 
     <!--JS files-->
@@ -484,6 +484,13 @@
                     element: ".info:first",
                     title: "Image Tour",
                     content: "You can add or remove an item to your Mood board by tapping this icon"
+                }
+                ,
+                {
+                    element:"#lockControl",
+                    title: "Image Tour",
+                    content:"You can lock and unlock scrolling by tapping this icon",
+                    placement: "right"
                 }
 
             ]
