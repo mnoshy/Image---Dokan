@@ -131,7 +131,7 @@ function MoodBoardResponse(recieved) {
   for (var i = 0; i < recieved[1].length; i++) {
     var id = getTheProductId(recieved[1][i]);
     var imgurl = recieved[0] + "/" + recieved[1][i];
-    if (imageExists("assets/furniture/"+imgurl)) {
+    /*if (imageExists("assets/furniture/"+imgurl)) */{
       $("#products-row").append(productTemplate(id, imgurl));
       
       // if ($("#ed_" + id).length > 0) {
