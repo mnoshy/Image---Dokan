@@ -13,6 +13,7 @@ $(document).ready(function () {
   }
   else {
     $("#dropdown").css("display", "none");
+    
   }
 
 });
