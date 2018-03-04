@@ -2,7 +2,7 @@
 <widget id="com.image.imagemoodboard" versionCode = "10000" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>Image Moodboard</name>
     <description>
-        Image Moodboard is an application that helps people create their own moodboards based on Image's furniture
+        Welcome to the IMAGE moodboard creator where you will be able to scroll through a fine selection or our items, select your favorites, create your own moodboard and request a quote.
     </description>
     <author email="info@acme-group.net" href="http://image-eg.com">
         ACME Engagement Solutions
