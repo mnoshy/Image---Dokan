@@ -2,7 +2,7 @@
 <widget id="com.image.imagemoodboard" versionCode = "10000" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>Image Moodboard</name>
     <description>
-        Welcome to the IMAGE moodboard creator where you will be able to scroll through a fine selection or our items, select your favorites, create your own moodboard and request a quote.
+        Welcome to IMAGE board application. Here you can enjoy a wide selection of our items that suits your needs and create your own moodboard to see you the final look to your livingroom, all done and created by YOU! Plus you can request a quote and soon enjoy them at home
     </description>
     <author email="info@acme-group.net" href="http://image-eg.com">
         ACME Engagement Solutions
