@@ -88,6 +88,8 @@
         <splash height="1024" platform="ios" src="res/screens/ios/Default-Portrait~ipad.png" width="768" />
         <splash height="960" platform="ios" src="res/screens/ios/Default@2x~iphone.png" width="640" />
         <splash height="480" platform="ios" src="res/screens/ios/Default~iphone.png" width="320" />
+
+        <preference name="StatusBarOverlaysWebView" value="false" />
     </platform>
     <engine name="ios" spec="^4.0.0" />
 </widget>
