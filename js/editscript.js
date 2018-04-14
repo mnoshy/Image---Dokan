@@ -714,6 +714,7 @@ function ToggleMenu(buttonTrigger) {
         $("#ColorButton").css("display", "none");
         $("#InpirationButton").css("display", "none");
         $("#HelpButton").css("display", "none");
+        $("#ClearButton").css("display", "none");
         $(buttonTrigger).css("background-color", "#ffbb00");
     }
     else {
@@ -722,6 +723,7 @@ function ToggleMenu(buttonTrigger) {
             $("#InpirationButton").css("display", "block");
         }
         $("#HelpButton").css("display", "block");
+        $("#ClearButton").css("display", "block");
         $(buttonTrigger).css("background-color", "lightgray");
     }
 }
@@ -829,4 +831,22 @@ function ScrollControl(LockImage)
     setTimeout( function(){
         $(LockImage).css("opacity", "0.5");
     },2000);
+}
+
+
+
+function ClearBoard()
+{
+    var tempImageIDs = []
+    for(var i = 0;i<ImageIDs.length;i++)
+    {
+        
+        tempImageIDs.push(ImageIDs[i]);
+    }
+    for(var i = 0;i<tempImageIDs.length;i++)
+    {
+        
+        SelectImage(tempImageIDs[i]);
+        DeleteCurrent();
+    }
 }

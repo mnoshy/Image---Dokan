@@ -3,6 +3,7 @@ var mobileBuild = true;
 var backendURL = "http://dev.acme-group.net/imagedemo2/api.php";//Local 
 var email = "";
 var selectedCategory = 'Sofas';
+var willAddMoodboard = '';
 $(document).ready(function () {
 
 
@@ -29,6 +30,7 @@ $(".category-icon").click(function (event) {
 
 function addMoodBoard(email) {
   var name = $("#add-new-moodboard").val();
+  willAddMoodboard = name;
   sendHTTPRequest("email=" + email + "&name=" + name + "&command=add", MoodBoardListResponse);
 }
 function deleteMoodBoard(id, email) {
@@ -63,10 +65,15 @@ function MoodBoardListResponse(recieved) {
     $("#dropdown").html(temp + ' <span class="caret"></span>');
   }
   $('.dropdown-element').on('click', function () {
-    $("#dropdown").html($(this).text() + ' <span class="caret"></span>');
-    currentMoodBoardId = $(this).find(":first-child").attr("id");
-    LoadData();
-    send_request(selectedCategory);
+    
+    if($(this).find(":first-child").attr("id")!="add-new-moodboard")
+    {
+      $("#dropdown").html($(this).text() + ' <span class="caret"></span>');
+      currentMoodBoardId = $(this).find(":first-child").attr("id");
+      LoadData();
+      send_request(selectedCategory);
+    }
+    
     //send request to load selected moodboard
 
   });
@@ -90,12 +97,14 @@ function sendHTTPRequest(queryString, onresponseFunction)//respone function is p
   xmlhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       try {
+        
         var jsonObj = JSON.parse(this.responseText);
         onresponseFunction(jsonObj);
         //StopLoading();
       }
       catch (err) {
         console.log(err);
+        console.log(this.responseText);
       }
 
     }
