@@ -1,3 +1,4 @@
+var demo = true;
 var serverPath = "http://dev.acme-group.net/imagedemo2/api.php";
 var noshyServerPath = "http://dev.acme-group.net/imagedemo2/";
 var scales = [];
@@ -68,12 +69,19 @@ window.onload = function () {
     });
 
     function updateIndicatoroff() {
-        $(".offline-ui").removeClass("offline-ui-up");
-        $(".offline-ui").addClass("offline-ui-down");
+        if(!demo)
+        {
+            $(".offline-ui").removeClass("offline-ui-up");
+            $(".offline-ui").addClass("offline-ui-down");
+        }
     }
     function updateIndicatoron() {
-        $(".offline-ui").addClass("offline-ui-up");
-        $(".offline-ui").removeClass("offline-ui-down");
+        if(demo == false)
+        {
+            $(".offline-ui").addClass("offline-ui-up");
+            $(".offline-ui").removeClass("offline-ui-down");
+        }
+        
     }
     // Update the online status icon based on connectivity
     // document.addEventListener('online', updateIndicatoron);
@@ -98,9 +106,15 @@ window.onload = function () {
     }, 1000);
     if (navigator.onLine == false) {
 
-        $(".offline-ui").removeClass("offline-ui-up");
-        $(".offline-ui").addClass("offline-ui-down");
+        if(!demo)
+        {
+            $(".offline-ui").removeClass("offline-ui-up");
+            $(".offline-ui").addClass("offline-ui-down");
+        }
+        
+        
     }
+    
     if(saveNeeded)
     {
         HandleLoadedData(JSON.parse(getCookie("LoadedData")));
