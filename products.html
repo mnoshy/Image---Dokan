@@ -111,7 +111,24 @@
             color: #551313;
         }
     </style>
+<script type="text/javascript">
+    var loadImgCache = function() {
+            // see console output for debug info
+            ImgCache.options.debug = true;
 
+            ImgCache.init(function() {
+                console.log('ImgCache initialised');
+            });
+
+        };
+        if (typeof(cordova) !== 'undefined') {
+            // cordova test
+            document.addEventListener('deviceready', loadImgCache, false);
+        } else {
+            // normal browser test
+            window.onload = loadImgCache;
+        }
+</script>
 </head>
 
 <body oncontextmenu="return false;">

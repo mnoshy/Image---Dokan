@@ -1,6 +1,7 @@
 //var backendURL = "http://dev.acme-group.net/imagedemo/image-backend.php";//Production 
 var mobileBuild = true;
 var backendURL = "http://dev.acme-group.net/imagedemo2/api.php";//Local 
+var backendURLImages = "http://dev.acme-group.net/imagedemo2/image/assets/furniture/";
 var email = "";
 var selectedCategory = 'Sofas';
 var willAddMoodboard = '';
@@ -65,7 +66,7 @@ function MoodBoardListResponse(recieved) {
     $("#dropdown").html(temp + ' <span class="caret"></span>');
   }
   $('.dropdown-element').on('click', function () {
-    
+
     if($(this).find(":first-child").attr("id")!="add-new-moodboard")
     {
       $("#dropdown").html($(this).text() + ' <span class="caret"></span>');
@@ -97,7 +98,7 @@ function sendHTTPRequest(queryString, onresponseFunction)//respone function is p
   xmlhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       try {
-        
+
         var jsonObj = JSON.parse(this.responseText);
         onresponseFunction(jsonObj);
         //StopLoading();
@@ -143,10 +144,11 @@ function MoodBoardResponse(recieved) {
     var imgurl = recieved[0] + "/" + recieved[1][i];
     /*if (imageExists("assets/furniture/"+imgurl)) */{
       $("#products-row").append(productTemplate(id, imgurl));
+      CacheImg(id);
       
       // if ($("#ed_" + id).length > 0) {
       //   $("#heart_ed_" + id).addClass("added");
-        
+
       // }
     }
 
@@ -167,7 +169,7 @@ function productTemplate(product_id, product_img) {
 
   html += '<div class="figure-grid"><div class="image">';
   html += '<a class="mfp-open">';
-  html += '<img id="' + product_id + '" src="assets/furniture/' + product_img + '" alt="" width="360"  />';
+  html += '<img id="' + product_id + '" src="'+ backendURLImages + product_img + '" alt="" width="360"  />';
   html += '</a>';
 
   html += '</div></div>';
@@ -183,7 +185,7 @@ function productModalTemplate(product_id, product_img) {
   html += '</div>';
 
   html += '<div class="owl-product-gallery">';
-  html += '<img src="assets/furniture/' + product_img + '" alt="" width="640" />';
+  html += '<img src="' + backendURLImages + product_img + '" alt="" width="640" />';
   html += '</div>';
 
   html += '</div></div>';
@@ -247,4 +249,18 @@ function StopLoading() {
   setTimeout(function () {
     $('.page-loader').addClass('loaded');
   }, 1500);
+}
+
+function CacheImg(id)
+{
+  var target = $('#'+id);
+  ImgCache.isCached(target.attr('src'), function(path, success) {
+    if (success) {
+      ImgCache.useCachedFile(target);
+    } else {
+      ImgCache.cacheFile(target.attr('src'), function () {
+        ImgCache.useCachedFile(target);
+      });
+    }
+  });
 }
