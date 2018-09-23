@@ -39,78 +39,81 @@
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    <style>
-        /* line 3, ../sass/_offline-theme-base-indicator.sass */
+<![endif]-->
+<style>
+/* line 3, ../sass/_offline-theme-base-indicator.sass */
 
-        .offline-ui,
-        .offline-ui *,
-        .offline-ui:before,
-        .offline-ui:after,
-        .offline-ui *:before,
-        .offline-ui *:after {
-            -webkit-box-sizing: border-box;
-            -moz-box-sizing: border-box;
-            box-sizing: border-box;
-        }
+.offline-ui,
+.offline-ui *,
+.offline-ui:before,
+.offline-ui:after,
+.offline-ui *:before,
+.offline-ui *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
 
-        /* line 6, ../sass/_offline-theme-base-indicator.sass */
+/* line 6, ../sass/_offline-theme-base-indicator.sass */
 
-        .offline-ui {
-            display: none;
-            position: fixed;
-            background: white;
-            z-index: 2000;
-            display: inline-block;
-        }
+.offline-ui {
+    display: none;
+    position: fixed;
+    background: white;
+    z-index: 2000;
+    display: inline-block;
+}
 
-        /* line 13, ../sass/_offline-theme-base-indicator.sass */
+/* line 13, ../sass/_offline-theme-base-indicator.sass */
 
-        .offline-ui .offline-ui-retry {
-            display: none;
-        }
+.offline-ui .offline-ui-retry {
+    display: none;
+}
 
-        /* line 16, ../sass/_offline-theme-base-indicator.sass */
+/* line 16, ../sass/_offline-theme-base-indicator.sass */
 
-        .offline-ui.offline-ui-up {
-            display: block;
-        }
+.offline-ui.offline-ui-up {
+    display: block;
+}
 
-        /* line 19, ../sass/_offline-theme-base-indicator.sass */
+/* line 19, ../sass/_offline-theme-base-indicator.sass */
 
-        .offline-ui.offline-ui-down {
-            display: block;
-        }
+.offline-ui.offline-ui-down {
+    display: block;
+}
 
-        /* line 11, ../sass/offline-theme-default-indicator.sass */
+/* line 11, ../sass/offline-theme-default-indicator.sass */
 
-        .offline-ui {
-            -webkit-border-radius: 4px;
-            -moz-border-radius: 4px;
-            -ms-border-radius: 4px;
-            -o-border-radius: 4px;
-            border-radius: 4px;
-            font-family: "Helvetica Neue", sans-serif;
-            padding: 1em;
-            max-width: 100%;
-            bottom: 1em;
-            left: 1em;
-        }
+.offline-ui {
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    border-radius: 4px;
+    font-family: "Helvetica Neue", sans-serif;
+    padding: 1em;
+    max-width: 100%;
+    bottom: 1em;
+    left: 1em;
+}
 
-        /* line 19, ../sass/offline-theme-default-indicator.sass */
+/* line 19, ../sass/offline-theme-default-indicator.sass */
 
-        .offline-ui.offline-ui-up {
-            background: transparent;
-            color: transparent;
-        }
+.offline-ui.offline-ui-up {
+    background: transparent;
+    color: transparent;
+}
 
-        /* line 23, ../sass/offline-theme-default-indicator.sass */
+/* line 23, ../sass/offline-theme-default-indicator.sass */
 
-        .offline-ui.offline-ui-down {
-            background: #ec8787;
-            color: #551313;
-        }
-    </style>
+.offline-ui.offline-ui-down {
+    background: #ec8787;
+    color: #551313;
+}
+</style>
+<script src="js/imgcache.js"></script>
+<!-- only for cordova (replace by phonegap.js for phonegap) - ignore on desktop browser -->
+<script src="cordova.js"></script>
 <script type="text/javascript">
     var loadImgCache = function() {
             // see console output for debug info
@@ -128,7 +131,7 @@
             // normal browser test
             window.onload = loadImgCache;
         }
-</script>
+    </script>
 </head>
 
 <body oncontextmenu="return false;">
@@ -264,196 +267,196 @@
 
                             </ul>
                             <input id="quoteButton" class="btn btn-primary" type="button" onclick="RequestQuote(ImageIDs);$(this).css('display','none');"
-                                value="Request a quote" />
+                            value="Request a quote" />
                             <button id="sharebtnDesktop" class="btn btn-primary dropdown-toggle" type="button" onclick="copyToClipboard()">
                                 <span class="icon icon-link"></span>Share Mood Board</button>
-                            <button id="sharebtnMobile" class="btn btn-primary dropdown-toggle" type="button" onclick="copyToClipboard()">
-                                <span class="icon icon-link"></span>
-                            </button>
+                                <button id="sharebtnMobile" class="btn btn-primary dropdown-toggle" type="button" onclick="copyToClipboard()">
+                                    <span class="icon icon-link"></span>
+                                </button>
+                            </div>
+                            <div id="copyToClipboardId" style="text-align: center;margin: 9px;display: none;">Link copied!</div>
                         </div>
-                        <div id="copyToClipboardId" style="text-align: center;margin: 9px;display: none;">Link copied!</div>
                     </div>
+
                 </div>
-
-            </div>
-        </section>
+            </section>
 
 
 
-        <section class="products" style="padding-top: 0;padding-bottom:40px;">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 text-center">
-                        <div id="catContainer" class="owl-icons-wrapper" style="padding-left: 5px;padding-right: 5px;">
-                            <div class="owl-icons">
-                                <!-- === icon item === -->
-                                <a class="category-icon" id="first-icon">
-                                    <figure name="Sofas">
-                                        <i class="f-icon f-icon-sofa"></i>
-                                        <figcaption>Sofas</figcaption>
-                                    </figure>
-                                </a>
+            <section class="products" style="padding-top: 0;padding-bottom:40px;">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <div id="catContainer" class="owl-icons-wrapper" style="padding-left: 5px;padding-right: 5px;">
+                                <div class="owl-icons">
+                                    <!-- === icon item === -->
+                                    <a class="category-icon" id="first-icon">
+                                        <figure name="Sofas">
+                                            <i class="f-icon f-icon-sofa"></i>
+                                            <figcaption>Sofas</figcaption>
+                                        </figure>
+                                    </a>
 
-                                <!-- === icon item === -->
+                                    <!-- === icon item === -->
 
-                                <a class="category-icon">
-                                    <figure name="Armchairs">
-                                        <i class="f-icon f-icon-armchair"></i>
-                                        <figcaption>Armchairs</figcaption>
-                                    </figure>
-                                </a>
+                                    <a class="category-icon">
+                                        <figure name="Armchairs">
+                                            <i class="f-icon f-icon-armchair"></i>
+                                            <figcaption>Armchairs</figcaption>
+                                        </figure>
+                                    </a>
 
-                                <!-- === icon item === -->
+                                    <!-- === icon item === -->
 
-                                <a class="category-icon">
-                                    <figure name="Stools">
-                                        <i class="f-icon f-icon-chair"></i>
-                                        <figcaption>Stools</figcaption>
-                                    </figure>
-                                </a>
+                                    <a class="category-icon">
+                                        <figure name="Stools">
+                                            <i class="f-icon f-icon-chair"></i>
+                                            <figcaption>Stools</figcaption>
+                                        </figure>
+                                    </a>
 
-                                <!-- === icon item === -->
+                                    <!-- === icon item === -->
 
-                                <a class="category-icon">
-                                    <figure name="Tables">
-                                        <i class="f-icon f-icon-dining-table"></i>
-                                        <figcaption>Tables</figcaption>
-                                    </figure>
-                                </a>
+                                    <a class="category-icon">
+                                        <figure name="Tables">
+                                            <i class="f-icon f-icon-dining-table"></i>
+                                            <figcaption>Tables</figcaption>
+                                        </figure>
+                                    </a>
 
-                                <!-- === icon item === -->
+                                    <!-- === icon item === -->
 
-                                <a class="category-icon">
-                                    <figure name="Accessories">
-                                        <i class="f-icon f-icon-accessories"></i>
-                                        <figcaption>Accessories</figcaption>
-                                    </figure>
-                                </a>
+                                    <a class="category-icon">
+                                        <figure name="Accessories">
+                                            <i class="f-icon f-icon-accessories"></i>
+                                            <figcaption>Accessories</figcaption>
+                                        </figure>
+                                    </a>
 
-                                <!-- === icon item === -->
+                                    <!-- === icon item === -->
 
-                                <a class="category-icon">
-                                    <figure name="Lighting">
-                                        <i class="f-icon f-icon-lightning"></i>
-                                        <figcaption>Lighting</figcaption>
-                                    </figure>
-                                </a>
+                                    <a class="category-icon">
+                                        <figure name="Lighting">
+                                            <i class="f-icon f-icon-lightning"></i>
+                                            <figcaption>Lighting</figcaption>
+                                        </figure>
+                                    </a>
 
-                                <!-- === icon item === -->
+                                    <!-- === icon item === -->
 
-                                <a class="category-icon">
-                                    <figure name="Carpets">
-                                        <i class="f-icon f-icon-carpet"></i>
-                                        <figcaption>Carpets</figcaption>
-                                    </figure>
-                                </a>
+                                    <a class="category-icon">
+                                        <figure name="Carpets">
+                                            <i class="f-icon f-icon-carpet"></i>
+                                            <figcaption>Carpets</figcaption>
+                                        </figure>
+                                    </a>
 
-                                <!-- === icon item === -->
+                                    <!-- === icon item === -->
 
-                                <a class="category-icon">
-                                    <figure name="Artwork">
-                                        <i class="f-icon custom-icon-artwork"></i>
-                                        <figcaption>Artwork</figcaption>
-                                    </figure>
-                                </a>
+                                    <a class="category-icon">
+                                        <figure name="Artwork">
+                                            <i class="f-icon custom-icon-artwork"></i>
+                                            <figcaption>Artwork</figcaption>
+                                        </figure>
+                                    </a>
 
-                                <!-- === icon item === -->
+                                    <!-- === icon item === -->
 
-                                <a class="category-icon">
-                                    <figure name="CurtainsAndCushions">
-                                        <i class="f-icon f-icon-wardrobe"></i>
-                                        <figcaption>Curtains</figcaption>
-                                    </figure>
-                                </a>
-                                <a class="category-icon">
-                                    <figure name="Illustrations">
-                                        <i class="f-icon custom-icon-illustration"></i>
-                                        <figcaption>Illustrations</figcaption>
-                                    </figure>
-                                </a>
-                                <a class="category-icon">
-                                    <figure name="Greenery">
-                                        <i class="f-icon custom-icon-greenery"></i>
-                                        <figcaption>Greenery</figcaption>
-                                    </figure>
-                                </a>
+                                    <a class="category-icon">
+                                        <figure name="CurtainsAndCushions">
+                                            <i class="f-icon f-icon-wardrobe"></i>
+                                            <figcaption>Curtains</figcaption>
+                                        </figure>
+                                    </a>
+                                    <a class="category-icon">
+                                        <figure name="Illustrations">
+                                            <i class="f-icon custom-icon-illustration"></i>
+                                            <figcaption>Illustrations</figcaption>
+                                        </figure>
+                                    </a>
+                                    <a class="category-icon">
+                                        <figure name="Greenery">
+                                            <i class="f-icon custom-icon-greenery"></i>
+                                            <figcaption>Greenery</figcaption>
+                                        </figure>
+                                    </a>
 
-                                <a class="category-icon">
-                                    <figure name="Pantone">
-                                        <i class="f-icon custom-icon-pantone"></i>
-                                        <figcaption>Pantone</figcaption>
-                                    </figure>
-                                </a>
+                                    <a class="category-icon">
+                                        <figure name="Pantone">
+                                            <i class="f-icon custom-icon-pantone"></i>
+                                            <figcaption>Pantone</figcaption>
+                                        </figure>
+                                    </a>
+                                </div>
                             </div>
                         </div>
+
                     </div>
+                </div>
+            </section>
+
+            <section class="products" style="padding-top: 0;">
+
+                <div class="container">
+                    <div class="row" id="products-row">
+
+
+
+
+
+                    </div>
+                    <!--/row-->
 
                 </div>
-            </div>
-        </section>
+                <!--/container-->
+            </section>
 
-        <section class="products" style="padding-top: 0;">
-
-            <div class="container">
-                <div class="row" id="products-row">
-
-
-
-
-
-                </div>
-                <!--/row-->
-
-            </div>
-            <!--/container-->
-        </section>
-
-    </div>
-    <div class="inspOverlay" style="width:100%;height:100%;background:black;position:fixed;left:0;top:0;z-index: 980;opacity:0.6;display:none;">
-
-    </div>
-    <div class="inspOverlay" style="width:100%;height:100%;background:transparent;position:fixed;left:0;top:0;z-index: 990;text-align:center;display:none;">
-        <div style="margin-top:6vh;margin-bottom:2vh;color:white;text-align:center;font-size:2em;">
-            <i class="icon icon-cross-circle" onclick='$(".inspOverlay").css("display","none");'></i>
         </div>
-        <img id="inspImg" style="max-width: 100%;max-height: 70%;margin:0 auto;margin-top:2vh;">
-        <div style="width:100%;margin-top:6vh;">
-            <div style="width:50%;float:left;">
+        <div class="inspOverlay" style="width:100%;height:100%;background:black;position:fixed;left:0;top:0;z-index: 980;opacity:0.6;display:none;">
 
-                <div onclick="prevInsp();" style="/* text-align: right; */width: 50px;background-color:#ffbb00;color:white;padding: 10px;border-radius: 5px;float:  right;margin-right: 50px;">
-                    <i class="icon icon-chevron-left"></i>
-                </div>
+        </div>
+        <div class="inspOverlay" style="width:100%;height:100%;background:transparent;position:fixed;left:0;top:0;z-index: 990;text-align:center;display:none;">
+            <div style="margin-top:6vh;margin-bottom:2vh;color:white;text-align:center;font-size:2em;">
+                <i class="icon icon-cross-circle" onclick='$(".inspOverlay").css("display","none");'></i>
             </div>
-            <div style="width:50%;float: left;">
-                <div onclick="nextInsp();" style="/* text-align: right; */width: 50px;background-color:#ffbb00;color:white;padding: 10px;border-radius: 5px;float:  left;margin-left: 50px;">
-                    <i class="icon icon-chevron-right"></i>
+            <img id="inspImg" style="max-width: 100%;max-height: 70%;margin:0 auto;margin-top:2vh;">
+            <div style="width:100%;margin-top:6vh;">
+                <div style="width:50%;float:left;">
+
+                    <div onclick="prevInsp();" style="/* text-align: right; */width: 50px;background-color:#ffbb00;color:white;padding: 10px;border-radius: 5px;float:  right;margin-right: 50px;">
+                        <i class="icon icon-chevron-left"></i>
+                    </div>
+                </div>
+                <div style="width:50%;float: left;">
+                    <div onclick="nextInsp();" style="/* text-align: right; */width: 50px;background-color:#ffbb00;color:white;padding: 10px;border-radius: 5px;float:  left;margin-left: 50px;">
+                        <i class="icon icon-chevron-right"></i>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div data-phase="5" class="offline-ui offline-ui-up">
+        <div data-phase="5" class="offline-ui offline-ui-up">
 
-        <span>Offline</span>
-    </div>
-    <!--/wrapper-->
-    <!-- Scroll Control Button -->
-    <img id="lockControl" src="assets/images/unlock.png" onclick="ScrollControl(this);" style="position: fixed; left: 2%; top: 32%;z-index: 1000; height: 10; width: 10; opacity: 0.5;"
-    />
+            <span>Offline</span>
+        </div>
+        <!--/wrapper-->
+        <!-- Scroll Control Button -->
+        <img id="lockControl" src="assets/images/unlock.png" onclick="ScrollControl(this);" style="position: fixed; left: 2%; top: 32%;z-index: 1000; height: 10; width: 10; opacity: 0.5;"
+        />
 
-    <!--JS files-->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/jquery.bootstrap.js"></script>
-    <script src="js/jquery.magnific-popup.js"></script>
-    <script src="js/jquery.owl.carousel.js"></script>
-    <script src="js/jquery.ion.rangeSlider.js"></script>
-    <script src="js/jquery.isotope.pkgd.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/cookies.js"></script>
-    <script src="js/editscript.js"></script>
-    <script src="js/Wagih.js"></script>
-    <script src="js/jscolor.min.js"></script>
-    <script src="js/bootstrap-tour.min.js"></script>
-    <style type="text/css">
+        <!--JS files-->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/jquery.bootstrap.js"></script>
+        <script src="js/jquery.magnific-popup.js"></script>
+        <script src="js/jquery.owl.carousel.js"></script>
+        <script src="js/jquery.ion.rangeSlider.js"></script>
+        <script src="js/jquery.isotope.pkgd.js"></script>
+        <script src="js/main.js"></script>
+        <script src="js/cookies.js"></script>
+        <script src="js/editscript.js"></script>
+        <script src="js/Wagih.js"></script>
+        <script src="js/jscolor.min.js"></script>
+        <script src="js/bootstrap-tour.min.js"></script>
+        <style type="text/css">
         .dropdown-element {
             cursor: pointer;
             font-size: 18px;
@@ -467,57 +470,57 @@
     <script>
         var tour = new Tour({
             steps: [
-                {
-                    element: ".rotatedButton",
-                    title: "Image Tour",
-                    content: "Tap here to expand or collapse the Moodboard area"
-                },
-                {
-                    element: "#MenuButton",
-                    title: "Image Tour",
-                    content: "Tap here to view inspirational Moodboards and to change the background color",
-                    placement: "left"
-                }
-                ,
-                {
-                    element: ".moodboardbutton",
-                    title: "Image Tour",
-                    content: "Tap here to add,remove or select a Moodboard",
-                    placement: "right"
-                }
-                ,
-                {
-                    element: "#quoteButton",
-                    title: "Image Tour",
-                    content: "Tap here to request a quote for the current Moodboard, you will receive an email ASAP",
-                    placement: "bottom"
-                }
-                ,
-                {
-                    element: "#sharebtnMobile",
-                    title: "Image Tour",
-                    content: "Tap here to share the current Mood board with a friend, anyone with the shared Moodboard can edit it",
-                    placement: "left"
-                }
-                ,
-                {
-                    element: "#catContainer",
-                    title: "Image Tour",
-                    content: "You can change the list of Items by choosing a different category, you can view more categories by sliding left and right",
-                    placement: "top"
-                },
-                {
-                    element: ".info:first",
-                    title: "Image Tour",
-                    content: "You can add or remove an item to your Moodboard by tapping this icon"
-                }
-                ,
-                {
-                    element:"#lockControl",
-                    title: "Image Tour",
-                    content:"To scroll freely, tap here to lock the Moodboard",
-                    placement: "right"
-                }
+            {
+                element: ".rotatedButton",
+                title: "Image Tour",
+                content: "Tap here to expand or collapse the Moodboard area"
+            },
+            {
+                element: "#MenuButton",
+                title: "Image Tour",
+                content: "Tap here to view inspirational Moodboards and to change the background color",
+                placement: "left"
+            }
+            ,
+            {
+                element: ".moodboardbutton",
+                title: "Image Tour",
+                content: "Tap here to add,remove or select a Moodboard",
+                placement: "right"
+            }
+            ,
+            {
+                element: "#quoteButton",
+                title: "Image Tour",
+                content: "Tap here to request a quote for the current Moodboard, you will receive an email ASAP",
+                placement: "bottom"
+            }
+            ,
+            {
+                element: "#sharebtnMobile",
+                title: "Image Tour",
+                content: "Tap here to share the current Mood board with a friend, anyone with the shared Moodboard can edit it",
+                placement: "left"
+            }
+            ,
+            {
+                element: "#catContainer",
+                title: "Image Tour",
+                content: "You can change the list of Items by choosing a different category, you can view more categories by sliding left and right",
+                placement: "top"
+            },
+            {
+                element: ".info:first",
+                title: "Image Tour",
+                content: "You can add or remove an item to your Moodboard by tapping this icon"
+            }
+            ,
+            {
+                element:"#lockControl",
+                title: "Image Tour",
+                content:"To scroll freely, tap here to lock the Moodboard",
+                placement: "right"
+            }
 
             ]
         });
