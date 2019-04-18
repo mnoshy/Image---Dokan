@@ -1,6 +1,6 @@
 var demo = true;
-var serverPath = "http://dev.acme-group.net/imagedemo2/api.php";
-var noshyServerPath = "http://dev.acme-group.net/imagedemo2/";
+var serverPath = "http://dev.acme-group.net/imagedemo2/api.php";//"http://localhost/api.php";
+var noshyServerPath = "http://dev.acme-group.net/imagedemo2/";//"http://localhost/";
 var scales = [];
 var angles = [];
 var translatePosArray = [];
@@ -41,7 +41,7 @@ window.onload = function () {
     }
     catch(errs)
     {
-
+        
     }
     if(getCookie("saveNeeded") == "true")
     {
@@ -145,15 +145,17 @@ window.onload = function () {
         startDragOffset.y = evt.touches[0].pageY - translatePos.y;
         if (imageID != null) {
             //saveNeeded = true;
+            
             disableScroll();
         }
 
     });
 
     container.addEventListener("touchend", function (evt) {
-        mouseDown = false;
-        enableScroll();
-        DeselectImages();
+        // mouseDown = false;
+        // enableScroll();
+        // DeselectImages();
+        // alert("ended");
         //saveNeeded = true;
     });
 
@@ -437,6 +439,9 @@ function updateArray() {
     angles[ImgIndex] = currentAngle;
 }
 function DeselectImages() {
+    mouseDown = false;
+        enableScroll();
+        // DeselectImages();
     oW = 0;
     $(".selectedImg").removeClass("selectedImg");
     imageID = null;
@@ -455,7 +460,17 @@ var keys = { 37: 1, 38: 1, 39: 1, 40: 1 };
 function preventDefault(e) {
     e = e || window.event;
     if (e.preventDefault)
-        e.preventDefault();
+    {
+        try
+        {
+            e.preventDefault();
+        }
+        catch(erer)
+        {
+
+        }
+        
+    }
     e.returnValue = false;
 }
 
@@ -476,6 +491,7 @@ function disableScroll() {
     window.onmousewheel = document.onmousewheel = preventDefault; // older browsers, IE
     window.ontouchmove = preventDefault; // mobile
     document.onkeydown = preventDefaultForScrollKeys;
+    
 }
 
 function enableScroll() {
@@ -488,7 +504,9 @@ function enableScroll() {
     window.onwheel = null;
     window.ontouchmove = null;
     document.onkeydown = null;
+    $("body").css("overflow","auto");
     RemoveSelectControls();
+    
 }
 
 
@@ -752,7 +770,7 @@ var inspirationIndex = 0;
 function GetInspirations() {
     $('.page-loader').removeClass('loaded');
     $.ajax({
-        url: "http://dev.acme-group.net/imagedemo2/noshyapi.php?inspirations=true"
+        url: "http://dev.acme-group.net/imagedemo2/noshyapi.php?inspirations=true"//"http://localhost/noshyapi.php?inspirations=true"
     }).done(function (data) {
         // alert(data);
 
@@ -781,7 +799,7 @@ function setInsp() {
         return;
     }
     // alert("http://localhost:8080/imagedemo/inspirations/"+inspirations[inspirationIndex]);
-    $("#inspImg").attr("src", "http://dev.acme-group.net/imagedemo2/inspirations/" + inspirations[inspirationIndex]);
+    $("#inspImg").attr("src", "http://dev.acme-group.net/imagedemo2/inspirations/"/*"http://localhost/inspirations/"*/ + inspirations[inspirationIndex]);
 }
 function nextInsp() {
     if (inspirationIndex < (inspirations.length - 1)) {

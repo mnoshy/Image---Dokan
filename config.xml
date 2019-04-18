@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.image.imagemoodboard" versionCode = "10004" version="1.0.4" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="com.image.imagemoodboard" versionCode = "10005" version="1.0.5" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>Image Moodboard</name>
     <description>
         Welcome to IMAGE board application. Here you can enjoy a wide selection of our items that suits your needs and create your own moodboard to see you the final look to your livingroom, all done and created by YOU! Plus you can request a quote and soon enjoy them at home
