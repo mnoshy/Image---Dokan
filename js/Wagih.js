@@ -1,7 +1,7 @@
 //var backendURL = "http://dev.acme-group.net/imagedemo/image-backend.php";//Production 
 var mobileBuild = true;
-var backendURL = "http://dev.acme-group.net/imagedemo2/api.php";//Local 
-var backendURLImages = "http://dev.acme-group.net/imagedemo2/image/assets/furniture/";
+var backendURL = "http://dev.acme-group.net/imagedemo2/api.php";//Local "http://localhost/api.php";
+var backendURLImages = "http://dev.acme-group.net/imagedemo2/image/assets/furniture/";//"http://localhost/imagedokan/assets/furniture/";
 var email = "";
 var selectedCategory = 'Sofas';
 var willAddMoodboard = '';
@@ -222,13 +222,19 @@ function getPageURLWithoutParameters() {
   return url.split('?')[0];
 }
 function copyToClipboard() {
-  var $temp = $("<input>");
+  var $temp = $("<input type='text'>");
   $("body").append($temp);
-  $temp.val((mobileBuild == false ? getPageURLWithoutParameters() : "http://dev.acme-group.net/imagedemo2/image/products.html") + "?email=" + email + "&moodboardId=" + currentMoodBoardId).select();
+  $temp.val((mobileBuild == false ? getPageURLWithoutParameters() :"http://dev.acme-group.net/imagedemo2/image/products.html"/*"http://localhost/imagedokan/products.html"*/) + "?email=" + email + "&moodboardId=" + currentMoodBoardId);
+  // $temp.focus();
+  // 
+  $temp.select();
+  $temp.get(0).setSelectionRange(0,9999);
+  // 
   document.execCommand("copy");
   $temp.remove();
   showCopiedToClipboard();
   setTimeout(hideCopiedToClipboard, 3000);
+  // alert("changedit");
 }
 
 function showCopiedToClipboard() {
